@@ -29,169 +29,170 @@ import type {
 
 export interface BasicDutchAuctionInterface extends utils.Interface {
   functions: {
-    "auctionEndBlock()": FunctionFragment;
-    "auctionStartingPrice()": FunctionFragment;
-    "bidAmountsByAddress(address)": FunctionFragment;
-    "claimRefund()": FunctionFragment;
-    "getBidAmount(address)": FunctionFragment;
-    "getCurrentPrice()": FunctionFragment;
-    "initialBidAmount()": FunctionFragment;
-    "initialBidder()": FunctionFragment;
-    "isAuctionOver()": FunctionFragment;
-    "numBlocksAuctionOpen()": FunctionFragment;
-    "offerPriceDecrement()": FunctionFragment;
-    "owner()": FunctionFragment;
+    "auctionCreator()": FunctionFragment;
+    "auctionDurationInBlocks()": FunctionFragment;
+    "auctionEndBlockNumber()": FunctionFragment;
+    "auctionEnded()": FunctionFragment;
+    "bidsByAddress(address)": FunctionFragment;
+    "getBalance(address)": FunctionFragment;
+    "getCurrentAuctionPrice()": FunctionFragment;
+    "hasReceivedValidBid()": FunctionFragment;
+    "initialBidValue()": FunctionFragment;
+    "initialParticipant()": FunctionFragment;
+    "minimumAcceptablePrice()": FunctionFragment;
     "placeBid()": FunctionFragment;
-    "receivedValidBid()": FunctionFragment;
-    "reservePrice()": FunctionFragment;
+    "priceDecrementPerBlock()": FunctionFragment;
+    "retrieveRefund()": FunctionFragment;
+    "startPrice()": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | "auctionEndBlock"
-      | "auctionStartingPrice"
-      | "bidAmountsByAddress"
-      | "claimRefund"
-      | "getBidAmount"
-      | "getCurrentPrice"
-      | "initialBidAmount"
-      | "initialBidder"
-      | "isAuctionOver"
-      | "numBlocksAuctionOpen"
-      | "offerPriceDecrement"
-      | "owner"
+      | "auctionCreator"
+      | "auctionDurationInBlocks"
+      | "auctionEndBlockNumber"
+      | "auctionEnded"
+      | "bidsByAddress"
+      | "getBalance"
+      | "getCurrentAuctionPrice"
+      | "hasReceivedValidBid"
+      | "initialBidValue"
+      | "initialParticipant"
+      | "minimumAcceptablePrice"
       | "placeBid"
-      | "receivedValidBid"
-      | "reservePrice"
+      | "priceDecrementPerBlock"
+      | "retrieveRefund"
+      | "startPrice"
   ): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: "auctionEndBlock",
+    functionFragment: "auctionCreator",
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "auctionStartingPrice",
+    functionFragment: "auctionDurationInBlocks",
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "bidAmountsByAddress",
+    functionFragment: "auctionEndBlockNumber",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "auctionEnded",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "bidsByAddress",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "claimRefund",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getBidAmount",
+    functionFragment: "getBalance",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "getCurrentPrice",
+    functionFragment: "getCurrentAuctionPrice",
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "initialBidAmount",
+    functionFragment: "hasReceivedValidBid",
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "initialBidder",
+    functionFragment: "initialBidValue",
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "isAuctionOver",
+    functionFragment: "initialParticipant",
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "numBlocksAuctionOpen",
+    functionFragment: "minimumAcceptablePrice",
     values?: undefined
   ): string;
-  encodeFunctionData(
-    functionFragment: "offerPriceDecrement",
-    values?: undefined
-  ): string;
-  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(functionFragment: "placeBid", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "receivedValidBid",
+    functionFragment: "priceDecrementPerBlock",
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "reservePrice",
+    functionFragment: "retrieveRefund",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "startPrice",
     values?: undefined
   ): string;
 
   decodeFunctionResult(
-    functionFragment: "auctionEndBlock",
+    functionFragment: "auctionCreator",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "auctionStartingPrice",
+    functionFragment: "auctionDurationInBlocks",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "bidAmountsByAddress",
+    functionFragment: "auctionEndBlockNumber",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "claimRefund",
+    functionFragment: "auctionEnded",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "getBidAmount",
+    functionFragment: "bidsByAddress",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "getBalance", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getCurrentAuctionPrice",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "getCurrentPrice",
+    functionFragment: "hasReceivedValidBid",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "initialBidAmount",
+    functionFragment: "initialBidValue",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "initialBidder",
+    functionFragment: "initialParticipant",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "isAuctionOver",
+    functionFragment: "minimumAcceptablePrice",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "numBlocksAuctionOpen",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "offerPriceDecrement",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "placeBid", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "receivedValidBid",
+    functionFragment: "priceDecrementPerBlock",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "reservePrice",
+    functionFragment: "retrieveRefund",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "startPrice", data: BytesLike): Result;
 
   events: {
-    "AuctionEnded(address,uint256)": EventFragment;
+    "AuctionCompleted(address,uint256)": EventFragment;
   };
 
-  getEvent(nameOrSignatureOrTopic: "AuctionEnded"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "AuctionCompleted"): EventFragment;
 }
 
-export interface AuctionEndedEventObject {
+export interface AuctionCompletedEventObject {
   winner: string;
   amount: BigNumber;
 }
-export type AuctionEndedEvent = TypedEvent<
+export type AuctionCompletedEvent = TypedEvent<
   [string, BigNumber],
-  AuctionEndedEventObject
+  AuctionCompletedEventObject
 >;
 
-export type AuctionEndedEventFilter = TypedEventFilter<AuctionEndedEvent>;
+export type AuctionCompletedEventFilter =
+  TypedEventFilter<AuctionCompletedEvent>;
 
 export interface BasicDutchAuction extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
@@ -220,220 +221,228 @@ export interface BasicDutchAuction extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    auctionEndBlock(overrides?: CallOverrides): Promise<[BigNumber]>;
+    auctionCreator(overrides?: CallOverrides): Promise<[string]>;
 
-    auctionStartingPrice(overrides?: CallOverrides): Promise<[BigNumber]>;
+    auctionDurationInBlocks(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    bidAmountsByAddress(
+    auctionEndBlockNumber(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    auctionEnded(overrides?: CallOverrides): Promise<[boolean]>;
+
+    bidsByAddress(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
 
-    claimRefund(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    getBidAmount(
+    getBalance(
       account: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
 
-    getCurrentPrice(overrides?: CallOverrides): Promise<[BigNumber]>;
+    getCurrentAuctionPrice(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    initialBidAmount(overrides?: CallOverrides): Promise<[BigNumber]>;
+    hasReceivedValidBid(overrides?: CallOverrides): Promise<[boolean]>;
 
-    initialBidder(overrides?: CallOverrides): Promise<[string]>;
+    initialBidValue(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    isAuctionOver(overrides?: CallOverrides): Promise<[boolean]>;
+    initialParticipant(overrides?: CallOverrides): Promise<[string]>;
 
-    numBlocksAuctionOpen(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    offerPriceDecrement(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    owner(overrides?: CallOverrides): Promise<[string]>;
+    minimumAcceptablePrice(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     placeBid(
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    receivedValidBid(overrides?: CallOverrides): Promise<[boolean]>;
+    priceDecrementPerBlock(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    reservePrice(overrides?: CallOverrides): Promise<[BigNumber]>;
+    retrieveRefund(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
+    startPrice(overrides?: CallOverrides): Promise<[BigNumber]>;
   };
 
-  auctionEndBlock(overrides?: CallOverrides): Promise<BigNumber>;
+  auctionCreator(overrides?: CallOverrides): Promise<string>;
 
-  auctionStartingPrice(overrides?: CallOverrides): Promise<BigNumber>;
+  auctionDurationInBlocks(overrides?: CallOverrides): Promise<BigNumber>;
 
-  bidAmountsByAddress(
+  auctionEndBlockNumber(overrides?: CallOverrides): Promise<BigNumber>;
+
+  auctionEnded(overrides?: CallOverrides): Promise<boolean>;
+
+  bidsByAddress(
     arg0: PromiseOrValue<string>,
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
-  claimRefund(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  getBidAmount(
+  getBalance(
     account: PromiseOrValue<string>,
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
-  getCurrentPrice(overrides?: CallOverrides): Promise<BigNumber>;
+  getCurrentAuctionPrice(overrides?: CallOverrides): Promise<BigNumber>;
 
-  initialBidAmount(overrides?: CallOverrides): Promise<BigNumber>;
+  hasReceivedValidBid(overrides?: CallOverrides): Promise<boolean>;
 
-  initialBidder(overrides?: CallOverrides): Promise<string>;
+  initialBidValue(overrides?: CallOverrides): Promise<BigNumber>;
 
-  isAuctionOver(overrides?: CallOverrides): Promise<boolean>;
+  initialParticipant(overrides?: CallOverrides): Promise<string>;
 
-  numBlocksAuctionOpen(overrides?: CallOverrides): Promise<BigNumber>;
-
-  offerPriceDecrement(overrides?: CallOverrides): Promise<BigNumber>;
-
-  owner(overrides?: CallOverrides): Promise<string>;
+  minimumAcceptablePrice(overrides?: CallOverrides): Promise<BigNumber>;
 
   placeBid(
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  receivedValidBid(overrides?: CallOverrides): Promise<boolean>;
+  priceDecrementPerBlock(overrides?: CallOverrides): Promise<BigNumber>;
 
-  reservePrice(overrides?: CallOverrides): Promise<BigNumber>;
+  retrieveRefund(
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  startPrice(overrides?: CallOverrides): Promise<BigNumber>;
 
   callStatic: {
-    auctionEndBlock(overrides?: CallOverrides): Promise<BigNumber>;
+    auctionCreator(overrides?: CallOverrides): Promise<string>;
 
-    auctionStartingPrice(overrides?: CallOverrides): Promise<BigNumber>;
+    auctionDurationInBlocks(overrides?: CallOverrides): Promise<BigNumber>;
 
-    bidAmountsByAddress(
+    auctionEndBlockNumber(overrides?: CallOverrides): Promise<BigNumber>;
+
+    auctionEnded(overrides?: CallOverrides): Promise<boolean>;
+
+    bidsByAddress(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    claimRefund(overrides?: CallOverrides): Promise<void>;
-
-    getBidAmount(
+    getBalance(
       account: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    getCurrentPrice(overrides?: CallOverrides): Promise<BigNumber>;
+    getCurrentAuctionPrice(overrides?: CallOverrides): Promise<BigNumber>;
 
-    initialBidAmount(overrides?: CallOverrides): Promise<BigNumber>;
+    hasReceivedValidBid(overrides?: CallOverrides): Promise<boolean>;
 
-    initialBidder(overrides?: CallOverrides): Promise<string>;
+    initialBidValue(overrides?: CallOverrides): Promise<BigNumber>;
 
-    isAuctionOver(overrides?: CallOverrides): Promise<boolean>;
+    initialParticipant(overrides?: CallOverrides): Promise<string>;
 
-    numBlocksAuctionOpen(overrides?: CallOverrides): Promise<BigNumber>;
-
-    offerPriceDecrement(overrides?: CallOverrides): Promise<BigNumber>;
-
-    owner(overrides?: CallOverrides): Promise<string>;
+    minimumAcceptablePrice(overrides?: CallOverrides): Promise<BigNumber>;
 
     placeBid(overrides?: CallOverrides): Promise<boolean>;
 
-    receivedValidBid(overrides?: CallOverrides): Promise<boolean>;
+    priceDecrementPerBlock(overrides?: CallOverrides): Promise<BigNumber>;
 
-    reservePrice(overrides?: CallOverrides): Promise<BigNumber>;
+    retrieveRefund(overrides?: CallOverrides): Promise<void>;
+
+    startPrice(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   filters: {
-    "AuctionEnded(address,uint256)"(
+    "AuctionCompleted(address,uint256)"(
       winner?: null,
       amount?: null
-    ): AuctionEndedEventFilter;
-    AuctionEnded(winner?: null, amount?: null): AuctionEndedEventFilter;
+    ): AuctionCompletedEventFilter;
+    AuctionCompleted(winner?: null, amount?: null): AuctionCompletedEventFilter;
   };
 
   estimateGas: {
-    auctionEndBlock(overrides?: CallOverrides): Promise<BigNumber>;
+    auctionCreator(overrides?: CallOverrides): Promise<BigNumber>;
 
-    auctionStartingPrice(overrides?: CallOverrides): Promise<BigNumber>;
+    auctionDurationInBlocks(overrides?: CallOverrides): Promise<BigNumber>;
 
-    bidAmountsByAddress(
+    auctionEndBlockNumber(overrides?: CallOverrides): Promise<BigNumber>;
+
+    auctionEnded(overrides?: CallOverrides): Promise<BigNumber>;
+
+    bidsByAddress(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    claimRefund(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    getBidAmount(
+    getBalance(
       account: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    getCurrentPrice(overrides?: CallOverrides): Promise<BigNumber>;
+    getCurrentAuctionPrice(overrides?: CallOverrides): Promise<BigNumber>;
 
-    initialBidAmount(overrides?: CallOverrides): Promise<BigNumber>;
+    hasReceivedValidBid(overrides?: CallOverrides): Promise<BigNumber>;
 
-    initialBidder(overrides?: CallOverrides): Promise<BigNumber>;
+    initialBidValue(overrides?: CallOverrides): Promise<BigNumber>;
 
-    isAuctionOver(overrides?: CallOverrides): Promise<BigNumber>;
+    initialParticipant(overrides?: CallOverrides): Promise<BigNumber>;
 
-    numBlocksAuctionOpen(overrides?: CallOverrides): Promise<BigNumber>;
-
-    offerPriceDecrement(overrides?: CallOverrides): Promise<BigNumber>;
-
-    owner(overrides?: CallOverrides): Promise<BigNumber>;
+    minimumAcceptablePrice(overrides?: CallOverrides): Promise<BigNumber>;
 
     placeBid(
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    receivedValidBid(overrides?: CallOverrides): Promise<BigNumber>;
+    priceDecrementPerBlock(overrides?: CallOverrides): Promise<BigNumber>;
 
-    reservePrice(overrides?: CallOverrides): Promise<BigNumber>;
+    retrieveRefund(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    startPrice(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    auctionEndBlock(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    auctionCreator(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    auctionStartingPrice(
+    auctionDurationInBlocks(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    bidAmountsByAddress(
+    auctionEndBlockNumber(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    auctionEnded(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    bidsByAddress(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    claimRefund(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    getBidAmount(
+    getBalance(
       account: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    getCurrentPrice(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    initialBidAmount(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    initialBidder(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    isAuctionOver(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    numBlocksAuctionOpen(
+    getCurrentAuctionPrice(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    offerPriceDecrement(
+    hasReceivedValidBid(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    initialBidValue(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    initialParticipant(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    minimumAcceptablePrice(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     placeBid(
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    receivedValidBid(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    priceDecrementPerBlock(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
-    reservePrice(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    retrieveRefund(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    startPrice(overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };
 }
