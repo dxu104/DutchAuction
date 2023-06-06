@@ -40,8 +40,8 @@
       ]
     },
     "/Users/xudecheng/INFO7500/INFO7500_contract/DutchAuction/V1.0/contracts/BasicDutchAuction.sol": {
-      "lastModificationDate": 1685494098200,
-      "contentHash": "cec11822285c73828749bf82f0502596",
+      "lastModificationDate": 1685927667632,
+      "contentHash": "2582dc8db6bbbd1bc4b9e310480ab724",
       "sourceName": "contracts/BasicDutchAuction.sol",
       "solcConfig": {
         "version": "0.8.18",

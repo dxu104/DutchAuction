@@ -180,7 +180,24 @@
 135
 136
 137
-138</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -241,6 +258,9 @@
 <span class="cline-any cline-yes">21×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">21×</span>
 <span class="cline-any cline-yes">21×</span>
 <span class="cline-any cline-yes">21×</span>
@@ -267,6 +287,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3×</span>
@@ -303,7 +326,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -317,75 +344,82 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 &nbsp;
 /*
-&nbsp;
 BasicDutchAuction is a contract for a simple auction where the price of an item
 &nbsp;
 starts high and decreases over time until a bid is placed.
 */
 contract BasicDutchAuction {
-// Owner of the auction
-address payable public auctionCreator;
+    // Owner of the auction
+    address payable public auctionCreator;
 &nbsp;
-// Minimum acceptable price for the auction
-uint256 public minimumAcceptablePrice;
+    // Minimum acceptable price for the auction
+    uint256 public minimumAcceptablePrice;
 &nbsp;
-// Duration of the auction in blocks
-uint256 public auctionDurationInBlocks;
+    // Duration of the auction in blocks
+    uint256 public auctionDurationInBlocks;
 &nbsp;
-// Amount by which the price decreases per block
-uint256 public priceDecrementPerBlock;
+    // Amount by which the price decreases per block
+    uint256 public priceDecrementPerBlock;
 &nbsp;
-// Starting price of the auction. Calculated as minimum price plus
-// the total price decrement over the duration of the auction
-uint256 public startPrice;
+    // Starting price of the auction. Calculated as minimum price plus
+    // the total price decrement over the duration of the auction
+    uint256 public startPrice;
 &nbsp;
-// Block number when the auction will end. Calculated as current block
-// number plus the duration of the auction in blocks
-uint256 public auctionEndBlockNumber;
+    // Block number when the auction will end. Calculated as current block
+    // number plus the duration of the auction in blocks
+    uint256 public auctionEndBlockNumber;
 &nbsp;
-// Flag to indicate if the auction has ended
-bool public auctionEnded;
+    // Flag to indicate if the auction has ended
+    bool public auctionEnded;
 &nbsp;
-// Address of the participant who has placed the initial valid bid
-address payable public initialParticipant;
+    // Address of the participant who has placed the initial valid bid
+    address payable public initialParticipant;
 &nbsp;
-// Value of the initial valid bid
-uint256 public initialBidValue;
+    // Value of the initial valid bid
+    uint256 public initialBidValue;
 &nbsp;
-// Flag to indicate if a valid bid has been received
-bool public hasReceivedValidBid;
+    // Flag to indicate if a valid bid has been received
+    bool public hasReceivedValidBid;
 &nbsp;
-// Mapping to store bids by address
-mapping(address =&gt; uint256) public bidsByAddress;
+    // Mapping to store bids by address
+    mapping(address =&gt; uint256) public bidsByAddress;
 &nbsp;
-// Event to be emitted when the auction is completed
-event AuctionCompleted(address winner, uint256 amount);
+    // Event to be emitted when the auction is completed
+    event AuctionCompleted(address winner, uint256 amount);
 &nbsp;
-/*
+    /*
 &nbsp;
 The constructor sets the initial state of the auction, including
 &nbsp;
 the minimum acceptable price, duration, and price decrement per block.
 */
-constructor(uint256 _minimumAcceptablePrice, uint256 _auctionDurationInBlocks, uint256 _priceDecrementPerBlock) {
-auctionCreator = payable(msg.sender);
-minimumAcceptablePrice = _minimumAcceptablePrice;
-auctionDurationInBlocks = _auctionDurationInBlocks;
-priceDecrementPerBlock = _priceDecrementPerBlock;
+    constructor(
+        uint256 _minimumAcceptablePrice,
+        uint256 _auctionDurationInBlocks,
+        uint256 _priceDecrementPerBlock
+    ) {
+        auctionCreator = payable(msg.sender);
+        minimumAcceptablePrice = _minimumAcceptablePrice;
+        auctionDurationInBlocks = _auctionDurationInBlocks;
+        priceDecrementPerBlock = _priceDecrementPerBlock;
 &nbsp;
-startPrice = minimumAcceptablePrice + auctionDurationInBlocks * priceDecrementPerBlock;
-auctionEndBlockNumber = block.number + auctionDurationInBlocks;
-auctionEnded = false;
-hasReceivedValidBid = false;
-initialParticipant = payable(address(0));
-initialBidValue = 0;
-}
+        startPrice =
+            minimumAcceptablePrice +
+            auctionDurationInBlocks *
+            priceDecrementPerBlock;
+        auctionEndBlockNumber = block.number + auctionDurationInBlocks;
+        auctionEnded = false;
+        hasReceivedValidBid = false;
+        initialParticipant = payable(address(0));
+        initialBidValue = 0;
+    }
 &nbsp;
-/*
+    /*
 &nbsp;
 placeBid allows a participant to place a bid on the auction. The function checks
 &nbsp;
@@ -393,74 +427,82 @@ that the auction is still ongoing, the bid is greater than 0 and at least as lar
 &nbsp;
 as the current price. If a valid bid is placed, it gets recorded.
 */
-function placeBid() public payable returns(bool){
-uint256 currentPrice = getCurrentAuctionPrice();
+    function placeBid() public payable returns (bool) {
+        uint256 currentPrice = getCurrentAuctionPrice();
 &nbsp;
-// Reverts if the auction has concluded
-require(currentPrice &gt; 0, "Auction has concluded");
+        // Reverts if the auction has concluded
+        require(currentPrice &gt; 0, "Auction has concluded");
 &nbsp;
-// Reverts if the bid value is 0
-require(msg.value &gt; 0, "Submitted bid value must be greater than 0");
+        // Reverts if the bid value is 0
+        require(msg.value &gt; 0, "Submitted bid value must be greater than 0");
 &nbsp;
-// Reverts if the bid value is less than the current price
-require(msg.value &gt;= currentPrice, "Submitted bid value is lower than the current price");
+        // Reverts if the bid value is less than the current price
+        require(
+            msg.value &gt;= currentPrice,
+            "Submitted bid value is lower than the current price"
+        );
 &nbsp;
-// If no valid bid has been received yet, records the current bid as the initial valid bid
-if(!hasReceivedValidBid) {
-initialParticipant = payable(msg.sender);
-initialBidValue = msg.value;
-hasReceivedValidBid = true;
-bidsByAddress[auctionCreator] += initialBidValue;
-auctionCreator.transfer(initialBidValue);
-return true;
-}
+        // If no valid bid has been received yet, records the current bid as the initial valid bid
+        if (!hasReceivedValidBid) {
+            initialParticipant = payable(msg.sender);
+            initialBidValue = msg.value;
+            hasReceivedValidBid = true;
+            bidsByAddress[auctionCreator] += initialBidValue;
+            auctionCreator.transfer(initialBidValue);
+            return true;
+        }
 &nbsp;
-// If there is already a valid bid, simply records the new bid
-bidsByAddress[msg.sender] += msg.value;
-return false;
-}
+        // If there is already a valid bid, simply records the new bid
+        bidsByAddress[msg.sender] += msg.value;
+        return false;
+    }
 &nbsp;
-/*
+    /*
 &nbsp;
 getCurrentAuctionPrice calculates the current price of the auction.
 If the auction has already ended, the current price is 0. Otherwise,
 the current price is calculated as the start price minus the number
 of blocks that have passed since the auction started, multiplied by the price decrement per block.
 */
-function getCurrentAuctionPrice() public view returns (uint256) {
-if (block.number &gt;= auctionEndBlockNumber) {
-return 0; // Auction has concluded
-} else {
-uint256 remainingBlocks = auctionEndBlockNumber - block.number;
-return startPrice - remainingBlocks * priceDecrementPerBlock;
-}
-}
-/*
+    function getCurrentAuctionPrice() public view returns (uint256) {
+        if (block.number &gt;= auctionEndBlockNumber) {
+            return 0; // Auction has concluded
+        } else {
+            uint256 remainingBlocks = auctionEndBlockNumber - block.number;
+            return startPrice - remainingBlocks * priceDecrementPerBlock;
+        }
+    }
+&nbsp;
+    /*
 &nbsp;
 retrieveRefund allows a participant to retrieve their bid if they have not won the auction.
 */
-function retrieveRefund() external {
-require(bidsByAddress[msg.sender] &gt; 0, "No refund available for the account");
+    function retrieveRefund() external {
+        require(
+            bidsByAddress[msg.sender] &gt; 0,
+            "No refund available for the account"
+        );
 &nbsp;
-uint256 refundAmount = bidsByAddress[msg.sender];
-bidsByAddress[msg.sender] = 0;
-payable(msg.sender).transfer(refundAmount);
-}
+        uint256 refundAmount = bidsByAddress[msg.sender];
+        bidsByAddress[msg.sender] = 0;
+        payable(msg.sender).transfer(refundAmount);
+    }
 &nbsp;
-/*
+    /*
 &nbsp;
 getBalance allows to query the balance of a specific account.
 */
-function getBalance(address account) external view returns (uint256) {
-return bidsByAddress[account];
+    function getBalance(address account) external view returns (uint256) {
+        return bidsByAddress[account];
+    }
 }
-}</pre></td></tr>
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue May 30 2023 21:02:44 GMT-0400 (Eastern Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jun 05 2023 17:07:08 GMT-0400 (Eastern Daylight Time)
 </div>
 </div>
 <script src="../prettify.js"></script>
