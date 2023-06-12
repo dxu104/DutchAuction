@@ -137,7 +137,7 @@ retrieveRefund allows a participant to retrieve their bid if they have not won t
         );
 
         uint256 refundAmount = bidsByAddress[msg.sender];
-        bidsByAddress[msg.sender] = 0;
+        bidsByAddress[msg.sender] = 0;//
         payable(msg.sender).transfer(refundAmount);
     }
 
